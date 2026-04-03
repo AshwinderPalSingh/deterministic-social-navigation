@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Scenario & Success & Collision & $T_{\mathrm{goal}}$ [s] & Min. clr. [m] & Unresolved recoveries \\
+\midrule
+Corridor Trap & 100.0\% & 0.0\% & $40.48\pm10.14$ & $0.500000\pm0.000000$ & $0.00\pm0.00$ \\
+Crossing Humans & 100.0\% & 0.0\% & $9.20\pm1.28$ & $0.501\pm0.002$ & $0.00\pm0.00$ \\
+Random Crowd & 100.0\% & 0.0\% & $22.80\pm6.03$ & $0.500000\pm0.000000$ & $0.00\pm0.00$ \\
+Structured Crowd & 100.0\% & 0.0\% & $18.03\pm4.82$ & $0.500001\pm0.000001$ & $0.00\pm0.00$ \\
+\bottomrule
+\end{tabular}
+}
+\caption{Controlled-scenario metrics generated directly from logged run summaries. Mean and standard deviation are reported over 50 seeds per scenario.}
+\label{tab:main}
+\end{table}

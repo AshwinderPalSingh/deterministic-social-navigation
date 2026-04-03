@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Scenario & Failure & Regression events p50 [p25,p75] & Max wait [s] p50 [p25,p75] & Dominant mode \\
+\midrule
+Corridor Trap & 0.0\% & $0\,[0,0]$ & $1.60\,[1.52,1.70]$ & none \\
+Crossing Humans & 0.0\% & $0\,[0,0]$ & $0.85\,[0.70,1.40]$ & none \\
+Random Crowd & 0.0\% & $1\,[0,2]$ & $2.40\,[2.00,2.88]$ & none \\
+Structured Crowd & 0.0\% & $0\,[0,0]$ & $1.70\,[1.40,2.30]$ & none \\
+Stress Crowd* & 100.0\% & $6\,[5,8]$ & $9.70\,[8.48,11.78]$ & deadlock \\
+\bottomrule
+\end{tabular}
+}
+\caption{Invariant-off ablation generated from logged runs. Regression events count episodes in which executed progress falls below the previously attained frontier.}
+\label{tab:noinvariant}
+\end{table}

@@ -1,0 +1,36 @@
+{
+  "config": "FULL_SYSTEM",
+  "failed_branches": [],
+  "humans": [],
+  "log_path": "/Users/ashwinder./Desktop/crowdnavproject/results/paper_eval/permanent_blocking/full_system/trial_005_seed_5/timestep_log.csv",
+  "obstacles": [
+    {
+      "center": [
+        5.0,
+        5.0
+      ],
+      "kind": "rectangle",
+      "size": [
+        0.9,
+        10.0
+      ]
+    }
+  ],
+  "robot_goal": [
+    9.0,
+    5.0
+  ],
+  "robot_start": [
+    1.0,
+    5.0
+  ],
+  "safety_distance": 0.5,
+  "scenario": "permanent_blocking",
+  "seed": 5,
+  "trial": 5,
+  "world_size": [
+    10.0,
+    10.0
+  ],
+  "zones": []
+}

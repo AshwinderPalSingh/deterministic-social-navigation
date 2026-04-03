@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Scenario & Controller & Success & Collision & $T_{\mathrm{goal}}$ [s] & Min. clr. [m] \\
+\midrule
+Corridor Trap & Proposed & 100.0\% & 0.0\% & $40.48\pm10.14$ & $0.500000\pm0.000000$ \\
+Corridor Trap & Reactive baseline & 0.0\% & 0.0\% & -- & $0.500000\pm0.000000$ \\
+Crossing Humans & Proposed & 100.0\% & 0.0\% & $9.20\pm1.28$ & $0.501\pm0.002$ \\
+Crossing Humans & Reactive baseline & 100.0\% & 0.0\% & $9.08\pm1.34$ & $0.501\pm0.002$ \\
+Random Crowd & Proposed & 100.0\% & 0.0\% & $22.80\pm6.03$ & $0.500000\pm0.000000$ \\
+Random Crowd & Reactive baseline & 2.0\% & 0.0\% & $27.00\pm0.00$ & $0.500000\pm0.000000$ \\
+\bottomrule
+\end{tabular}
+}
+\caption{Comparison against a reactive projected baseline that retains runtime safety projection but disables guide-planner memory and post-correction progress enforcement. Time-to-goal is reported over successful runs only.}
+\label{tab:baseline}
+\end{table}

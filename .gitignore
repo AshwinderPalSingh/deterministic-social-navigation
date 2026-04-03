@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local plotting / runtime state
+.mplconfig/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+missfont.log
+paper/paper_icra.pdf
+
+# macOS
+.DS_Store
+
+# Legacy scratch outputs
+plots/
+/paper*.pdf
+/about.pdf
+
+# Old logs / temporary CSVs
+logs/*.csv
+
+# Notebook / editor
+.ipynb_checkpoints/
+.vscode/

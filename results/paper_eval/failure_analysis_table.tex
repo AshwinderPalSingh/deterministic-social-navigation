@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Scenario & Failure & Collision & Unresolved recoveries & Max wait p75 [s] & Dominant mode \\
+\midrule
+Corridor Trap & 0.0\% & 0.0\% & $0.00\pm0.00$ & 7.1 & none \\
+Crossing Humans & 0.0\% & 0.0\% & $0.00\pm0.00$ & 1.1 & none \\
+Random Crowd & 0.0\% & 0.0\% & $0.00\pm0.00$ & 2.5 & none \\
+Structured Crowd & 0.0\% & 0.0\% & $0.00\pm0.00$ & 1.9 & none \\
+Stress Crowd* & 100.0\% & 0.0\% & $0.22\pm0.41$ & 11.1 & deadlock \\
+Permanent Blocking** & 100.0\% & 0.0\% & $0.00\pm0.00$ & 76.1 & deadlock \\
+\bottomrule
+\end{tabular}
+}
+\caption{Failure-oriented diagnostics derived from logged runs. The starred stress row is a logged adversarial crowd suite used to expose safe failure; the double-starred permanent-blocking row is an out-of-regime diagnostic used to illustrate behavior when admissible-dynamics assumptions are violated.}
+\label{tab:failures}
+\end{table}

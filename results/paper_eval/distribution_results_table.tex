@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Scenario & $T_{\mathrm{goal}}$ p50 [p25,p75] & Min. clr. p50 [p25,p75] & Max wait [s] p50 [p25,p75] & Inv. rec. p50 [p25,p75] \\
+\midrule
+Corridor Trap & $41.05\,[32.00,46.73]$ & $0.500000\,[0.500000,0.500000]$ & $6.30\,[3.73,7.12]$ & $217\,[136,282]$ \\
+Crossing Humans & $8.75\,[8.10,9.87]$ & $0.500\,[0.500,0.500]$ & $0.85\,[0.70,1.05]$ & $0\,[0,1]$ \\
+Random Crowd & $22.85\,[18.15,25.93]$ & $0.500000\,[0.500000,0.500000]$ & $1.70\,[1.00,2.45]$ & $23\,[12,40]$ \\
+Structured Crowd & $18.40\,[15.12,20.83]$ & $0.500000\,[0.500000,0.500000]$ & $1.25\,[0.90,1.88]$ & $12\,[5,21]$ \\
+\bottomrule
+\end{tabular}
+}
+\caption{Distribution-aware summary from logged runs. Entries report median with interquartile range; invariant-recovery counts expose how often runtime rollback and correction were activated.}
+\label{tab:distributions}
+\end{table}

@@ -1,0 +1,104 @@
+{
+  "config": "NO_INVARIANT_ENFORCEMENT",
+  "failed_branches": [],
+  "humans": [
+    {
+      "initial_goal": [
+        5.85,
+        1.48
+      ],
+      "initial_position": [
+        5.85,
+        1.48
+      ],
+      "initial_velocity": [
+        0.0,
+        0.0
+      ],
+      "radius": 0.34
+    },
+    {
+      "initial_goal": [
+        5.95,
+        1.92
+      ],
+      "initial_position": [
+        5.95,
+        1.92
+      ],
+      "initial_velocity": [
+        0.0,
+        0.0
+      ],
+      "radius": 0.34
+    },
+    {
+      "initial_goal": [
+        6.05,
+        2.3
+      ],
+      "initial_position": [
+        6.05,
+        2.3
+      ],
+      "initial_velocity": [
+        0.0,
+        0.0
+      ],
+      "radius": 0.34
+    }
+  ],
+  "log_path": "/Users/ashwinder./Desktop/crowdnavproject/results/paper_eval/corridor_trap/no_invariant_enforcement/trial_024_seed_24/timestep_log.csv",
+  "obstacles": [
+    {
+      "center": [
+        4.8,
+        6.4
+      ],
+      "kind": "rectangle",
+      "size": [
+        1.8,
+        2.0
+      ]
+    },
+    {
+      "center": [
+        4.8,
+        3.4
+      ],
+      "kind": "rectangle",
+      "size": [
+        1.8,
+        2.0
+      ]
+    },
+    {
+      "center": [
+        7.1,
+        8.9
+      ],
+      "kind": "rectangle",
+      "size": [
+        1.8,
+        0.7
+      ]
+    }
+  ],
+  "robot_goal": [
+    9.0,
+    4.2
+  ],
+  "robot_start": [
+    1.0,
+    4.2
+  ],
+  "safety_distance": 0.5,
+  "scenario": "corridor_trap",
+  "seed": 24,
+  "trial": 24,
+  "world_size": [
+    10.0,
+    10.0
+  ],
+  "zones": []
+}

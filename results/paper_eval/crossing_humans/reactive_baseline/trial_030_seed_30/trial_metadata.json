@@ -1,0 +1,100 @@
+{
+  "config": "REACTIVE_BASELINE",
+  "failed_branches": [],
+  "humans": [
+    {
+      "initial_goal": [
+        3.42,
+        1.1900000000000002
+      ],
+      "initial_position": [
+        3.42,
+        8.389999999999999
+      ],
+      "initial_velocity": [
+        0.0,
+        -1.020243210503455
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        3.7,
+        0.9700000000000001
+      ],
+      "initial_position": [
+        3.7,
+        8.17
+      ],
+      "initial_velocity": [
+        0.0,
+        -0.9622583036193971
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        6.88,
+        8.77
+      ],
+      "initial_position": [
+        6.88,
+        1.5700000000000005
+      ],
+      "initial_velocity": [
+        0.0,
+        1.2570121149966234
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        6.6,
+        8.989999999999998
+      ],
+      "initial_position": [
+        6.6,
+        1.7900000000000007
+      ],
+      "initial_velocity": [
+        0.0,
+        1.4
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        6.319999999999999,
+        8.77
+      ],
+      "initial_position": [
+        6.319999999999999,
+        1.5700000000000005
+      ],
+      "initial_velocity": [
+        0.0,
+        1.2051267451977352
+      ],
+      "radius": 0.18
+    }
+  ],
+  "log_path": "/Users/ashwinder./Desktop/crowdnavproject/results/paper_eval/crossing_humans/reactive_baseline/trial_030_seed_30/timestep_log.csv",
+  "obstacles": [],
+  "robot_goal": [
+    9.0,
+    5.0
+  ],
+  "robot_start": [
+    1.0,
+    5.0
+  ],
+  "safety_distance": 0.5,
+  "scenario": "crossing_flow",
+  "seed": 30,
+  "trial": 30,
+  "world_size": [
+    10.0,
+    10.0
+  ],
+  "zones": []
+}

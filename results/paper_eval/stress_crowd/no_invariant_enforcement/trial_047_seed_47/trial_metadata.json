@@ -1,0 +1,267 @@
+{
+  "config": "NO_INVARIANT_ENFORCEMENT",
+  "failed_branches": [
+    {
+      "guide_direction": [
+        1.0,
+        0.0
+      ],
+      "guide_normal": [
+        -0.0,
+        1.0
+      ],
+      "point": [
+        9.0,
+        5.0
+      ],
+      "radius": 1.4
+    }
+  ],
+  "humans": [
+    {
+      "initial_goal": [
+        2.040203396136837,
+        4.954407981531325
+      ],
+      "initial_position": [
+        7.949914766221132,
+        4.878425536386092
+      ],
+      "initial_velocity": [
+        -1.2294439693621475,
+        0.015807228663328923
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        2.3258173703389193,
+        4.723235655929252
+      ],
+      "initial_position": [
+        7.521276767971755,
+        4.93705457423062
+      ],
+      "initial_velocity": [
+        -1.2703518906463707,
+        -0.05228127992759663
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        2.530083782600298,
+        5.055852441650327
+      ],
+      "initial_position": [
+        7.39504205742318,
+        5.075591117104129
+      ],
+      "initial_velocity": [
+        -1.0134185383694885,
+        -0.004111759751623044
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        2.458689871873866,
+        5.12113037997677
+      ],
+      "initial_position": [
+        7.149560201493053,
+        4.84733369111359
+      ],
+      "initial_velocity": [
+        -1.1752921663146796,
+        0.06859944551268729
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        3.6660457172778713,
+        1.6967305492304918
+      ],
+      "initial_position": [
+        3.6660457172778713,
+        8.89673054923049
+      ],
+      "initial_velocity": [
+        0.0,
+        -1.365460700690689
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        4.171212118558033,
+        8.673070199780032
+      ],
+      "initial_position": [
+        4.171212118558033,
+        1.4730701997800333
+      ],
+      "initial_velocity": [
+        0.0,
+        1.1132974042922277
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        4.996816941883184,
+        1.2903063018766474
+      ],
+      "initial_position": [
+        4.996816941883184,
+        8.490306301876647
+      ],
+      "initial_velocity": [
+        0.0,
+        -1.1570762539988773
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        5.721135931058181,
+        8.643315138837359
+      ],
+      "initial_position": [
+        5.721135931058181,
+        1.4433151388373586
+      ],
+      "initial_velocity": [
+        0.0,
+        0.9620413061228827
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        6.191822035805354,
+        1.3808085221011446
+      ],
+      "initial_position": [
+        6.191822035805354,
+        8.580808522101144
+      ],
+      "initial_velocity": [
+        0.0,
+        -0.9041240808530491
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        7.011973418645937,
+        8.59215602359378
+      ],
+      "initial_position": [
+        7.011973418645937,
+        1.392156023593781
+      ],
+      "initial_velocity": [
+        0.0,
+        1.1052974282844
+      ],
+      "radius": 0.18
+    },
+    {
+      "initial_goal": [
+        5.45,
+        4.72
+      ],
+      "initial_position": [
+        5.55,
+        4.92
+      ],
+      "initial_velocity": [
+        -0.39341868164253946,
+        -0.7868373632850825
+      ],
+      "radius": 0.34
+    },
+    {
+      "initial_goal": [
+        5.67,
+        4.72
+      ],
+      "initial_position": [
+        5.77,
+        5.08
+      ],
+      "initial_velocity": [
+        -0.178470997293767,
+        -0.6424955902575641
+      ],
+      "radius": 0.34
+    },
+    {
+      "initial_goal": [
+        5.890000000000001,
+        4.72
+      ],
+      "initial_position": [
+        5.99,
+        4.92
+      ],
+      "initial_velocity": [
+        -0.3172083649014853,
+        -0.6344167298029735
+      ],
+      "radius": 0.34
+    }
+  ],
+  "log_path": "/Users/ashwinder./Desktop/crowdnavproject/results/paper_eval/stress_crowd/no_invariant_enforcement/trial_047_seed_47/timestep_log.csv",
+  "obstacles": [
+    {
+      "center": [
+        4.9,
+        2.15
+      ],
+      "kind": "rectangle",
+      "size": [
+        4.6,
+        2.5
+      ]
+    },
+    {
+      "center": [
+        4.9,
+        7.85
+      ],
+      "kind": "rectangle",
+      "size": [
+        4.6,
+        2.5
+      ]
+    },
+    {
+      "center": [
+        6.1,
+        5.0
+      ],
+      "kind": "circle",
+      "size": 0.34
+    }
+  ],
+  "robot_goal": [
+    9.0,
+    5.0
+  ],
+  "robot_start": [
+    1.0,
+    5.0
+  ],
+  "safety_distance": 0.5,
+  "scenario": "stress_crowd",
+  "seed": 47,
+  "trial": 47,
+  "world_size": [
+    10.0,
+    10.0
+  ],
+  "zones": []
+}
