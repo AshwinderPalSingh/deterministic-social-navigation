@@ -2,7 +2,7 @@
 
 Deterministic navigation with execution-level progress invariants.
 
-This repository contains a reproducible research codebase for deterministic social navigation with a global progress invariant enforced on the executed robot state after projection, smoothing, and runtime correction. The project includes the simulator, evaluation pipeline, logged results, publication figures, and the ICRA/IROS-style manuscript.
+This repository contains a reproducible research codebase for deterministic social navigation with a global progress invariant enforced on the executed robot state after projection, smoothing, and runtime correction. The project includes the simulator, evaluation pipeline, logged results and publication figures
 
 ## Key idea
 
@@ -31,8 +31,7 @@ This alignment between theory and the executed state is the central research cla
 deterministic-social-navigation/
 ├── src/                     # simulator, controller, plotting
 ├── evaluation/              # reproducible evaluation pipeline
-├── figures/                 # paper-ready figures generated from logs
-├── paper/                   # LaTeX manuscript, class file, compiled PDF
+├── figures/                 # paper-ready figures generated from logs                
 ├── results/paper_eval/      # logged runs, summaries, and generated LaTeX tables
 ├── logs/                    # notes about optional sample logs
 ├── requirements.txt
