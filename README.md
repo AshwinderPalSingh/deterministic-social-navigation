@@ -69,18 +69,8 @@ The first command runs the logged paper evaluation and regenerates:
 
 The second command regenerates the representative trajectory, progress, and pipeline figures from logged trials. If `results/paper_eval/` already exists, it selects a default representative logged run automatically.
 
-## Compile the paper
 
-```bash
-cd paper
-pdflatex paper_icra.tex
-bibtex paper_icra
-pdflatex paper_icra.tex
-pdflatex paper_icra.tex
-cp paper_icra.pdf paper.pdf
-```
 
-The compiled manuscript is stored as `paper/paper.pdf`.
 
 ## Main artifacts
 
