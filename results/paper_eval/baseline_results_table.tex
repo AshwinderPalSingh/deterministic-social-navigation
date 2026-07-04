@@ -12,10 +12,10 @@ Corridor Trap & Reactive baseline & 0.0\% & 0.0\% & -- & $0.500000\pm0.000000$ \
 Crossing Humans & Proposed & 100.0\% & 0.0\% & $9.20\pm1.28$ & $0.501\pm0.002$ \\
 Crossing Humans & Reactive baseline & 100.0\% & 0.0\% & $9.08\pm1.34$ & $0.501\pm0.002$ \\
 Random Crowd & Proposed & 100.0\% & 0.0\% & $22.80\pm6.03$ & $0.500000\pm0.000000$ \\
-Random Crowd & Reactive baseline & 2.0\% & 0.0\% & $27.00\pm0.00$ & $0.500000\pm0.000000$ \\
+Random Crowd & Reactive baseline & 2.0\% & 0.0\% & $27.00$ (n=1) & $0.500000$ (n=1) \\
 \bottomrule
 \end{tabular}
 }
-\caption{Comparison against a reactive projected baseline that retains runtime safety projection but disables guide-planner memory and post-correction progress enforcement. Time-to-goal is reported over successful runs only.}
+\caption{Comparison against a reactive baseline that retains only runtime safety projection: the guide planner, weak suppression, interaction memory, top-$k$ filtering, multi-human aggregation, failed-branch memory, and the progress-regression safeguard are all disabled simultaneously (7 flags). This is not a single-variable ablation of the safeguard; see Table~\ref{tab:noinvariant} for that comparison. Time-to-goal is reported over successful runs only.}
 \label{tab:baseline}
 \end{table}

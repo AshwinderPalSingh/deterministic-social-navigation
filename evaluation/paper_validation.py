@@ -65,7 +65,7 @@ DIAGNOSTIC_SCENARIO_SPECS = (
         "max_steps": 800,
         "num_runs": 10,
         "scenario_class": "diagnostic",
-        "include_baseline": False,
+        "include_baseline": True,
     },
 )
 
@@ -453,7 +453,7 @@ def run_paper_evaluation(
         controller_specs = [(PROPOSED_CONTROLLER, "full", spec["scenario_class"])]
         if bool(spec.get("include_baseline", False)):
             controller_specs.append((BASELINE_CONTROLLER, "reactive_baseline", spec["scenario_class"]))
-        if spec["scenario_class"] in {"controlled", "stress"}:
+        if spec["scenario_class"] in {"controlled", "stress", "diagnostic"}:
             controller_specs.append((NO_INVARIANT_CONTROLLER, "no_invariant", "ablation"))
 
         for controller_name, ablation_name, scenario_class in controller_specs:
@@ -542,7 +542,7 @@ def _label_for(paper_name: str) -> str:
 def generate_table_fragments(
     *,
     output_dir: str | Path = "results/paper_eval",
-) -> tuple[Path, Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path]:
     root_dir = _resolve_output_root(output_dir)
     rows = _read_csv_rows(root_dir / "combined_summary_results.csv")
     if not rows:
@@ -627,6 +627,21 @@ def generate_table_fragments(
         "Scenario & Failure & Regression events p50 [p25,p75] & Max wait [s] p50 [p25,p75] & Dominant mode \\\\",
         "\\midrule",
     ]
+    ablation_detail_table_lines = [
+        "\\begin{table}[h]",
+        "\\centering",
+        "\\scriptsize",
+        "\\caption{Paired totals per scenario/configuration, Proposed (safeguard "
+        "on) vs.\\ No-invariant (safeguard off), over the trial count reported in "
+        "Table~\\ref{tab:main}/\\ref{tab:noinvariant}. Regression events and "
+        "time-to-goal are computed identically for both configurations.}",
+        "\\label{tab:ablation-detail}",
+        "\\begin{tabular}{@{}lcccc@{}}",
+        "\\toprule",
+        "Scenario & \\multicolumn{2}{c}{Regr.\\ events (sum)} & \\multicolumn{2}{c}{Mean $T_{\\text{goal}}$ [s]} \\\\",
+        " & On & Off & On & Off \\\\",
+        "\\midrule",
+    ]
 
     controlled_rows.sort(key=lambda row: CONTROLLED_SCENARIO_ORDER.index(str(row["paper_scenario"])))
     for row in controlled_rows:
@@ -684,8 +699,15 @@ def generate_table_fragments(
             clr_mean = _float_or_nan(str(row.get("min_clr_mean")))
             clr_std = _float_or_nan(str(row.get("min_clr_std")))
             clr_digits = _clearance_digits(clr_std)
-            time_cell = _format_mean_std(time_mean, time_std) if math.isfinite(time_mean) and math.isfinite(time_std) else "--"
-            clr_cell = _format_mean_std(clr_mean, clr_std, digits=clr_digits) if math.isfinite(clr_mean) and math.isfinite(clr_std) else "--"
+            num_trials = int(float(row.get("num_trials", 0.0)))
+            num_success = round(float(row["success_rate"]) * num_trials) if num_trials else 0
+            single_success = num_success == 1
+            if single_success:
+                time_cell = f"${time_mean:.2f}$ (n=1)" if math.isfinite(time_mean) else "--"
+                clr_cell = f"${clr_mean:.{clr_digits}f}$ (n=1)" if math.isfinite(clr_mean) else "--"
+            else:
+                time_cell = _format_mean_std(time_mean, time_std) if math.isfinite(time_mean) and math.isfinite(time_std) else "--"
+                clr_cell = _format_mean_std(clr_mean, clr_std, digits=clr_digits) if math.isfinite(clr_mean) and math.isfinite(clr_std) else "--"
             baseline_table_lines.append(
                 f"{label} & {CONTROLLER_LABELS.get(controller_key, controller_key)} & "
                 f"{_format_percent(float(row['success_rate']))} & "
@@ -709,6 +731,38 @@ def generate_table_fragments(
             f"{_format_iqr(float(row['regression_events_p25']), float(row['regression_events_p50']), float(row['regression_events_p75']), digits=0)} & "
             f"{_format_iqr(float(row['max_wait_time_p25']), float(row['max_wait_time_p50']), float(row['max_wait_time_p75']))} & "
             f"{str(row['dominant_failure_mode']).replace('_', ' ')} \\\\"
+        )
+
+    proposed_by_scenario = {
+        str(row["paper_scenario"]): row
+        for row in controlled_rows + noncontrolled_rows
+        if row.get("scenario_class") != "diagnostic"
+    }
+    detail_order = list(CONTROLLED_SCENARIO_ORDER) + ["stress_crowd"]
+    detail_rows = [
+        row for row in ablation_rows if str(row["paper_scenario"]) in proposed_by_scenario
+    ]
+    detail_rows.sort(
+        key=lambda row: detail_order.index(str(row["paper_scenario"]))
+        if str(row["paper_scenario"]) in detail_order
+        else 99
+    )
+    for off_row in detail_rows:
+        paper_name = str(off_row["paper_scenario"])
+        on_row = proposed_by_scenario[paper_name]
+        label = _label_for(paper_name)
+        on_num_trials = int(float(on_row.get("num_trials", 0.0)))
+        off_num_trials = int(float(off_row.get("num_trials", 0.0)))
+        on_regr_sum = round(float(on_row["regression_events_mean"]) * on_num_trials)
+        off_regr_sum = round(float(off_row["regression_events_mean"]) * off_num_trials)
+        on_time = float(on_row["time_to_goal_mean"])
+        off_time = float(off_row["time_to_goal_mean"])
+        on_success = float(on_row["success_rate"]) > 0.0
+        off_success = float(off_row["success_rate"]) > 0.0
+        on_time_cell = f"{on_time:.2f}" if math.isfinite(on_time) and on_success else f"n/a ({_format_percent(float(on_row['success_rate']))})"
+        off_time_cell = f"{off_time:.2f}" if math.isfinite(off_time) and off_success else f"n/a ({_format_percent(float(off_row['success_rate']))})"
+        ablation_detail_table_lines.append(
+            f"{label} & {on_regr_sum} & {off_regr_sum} & {on_time_cell} & {off_time_cell} \\\\"
         )
 
     main_table_lines.extend(
@@ -746,7 +800,7 @@ def generate_table_fragments(
             "\\bottomrule",
             "\\end{tabular}",
             "}",
-            "\\caption{Comparison against a reactive projected baseline that retains runtime safety projection but disables guide-planner memory and post-correction progress enforcement. Time-to-goal is reported over successful runs only.}",
+            "\\caption{Comparison against a reactive baseline that retains only runtime safety projection: the guide planner, weak suppression, interaction memory, top-$k$ filtering, multi-human aggregation, failed-branch memory, and the progress-regression safeguard are all disabled simultaneously (7 flags). This is not a single-variable ablation of the safeguard; see Table~\\ref{tab:noinvariant} for that comparison. Time-to-goal is reported over successful runs only.}",
             "\\label{tab:baseline}",
             "\\end{table}",
         ]
@@ -761,18 +815,34 @@ def generate_table_fragments(
             "\\end{table}",
         ]
     )
+    ablation_detail_table_lines.extend(
+        [
+            "\\bottomrule",
+            "\\end{tabular}",
+            "\\end{table}",
+        ]
+    )
 
     main_table_path = root_dir / "main_results_table.tex"
     distribution_table_path = root_dir / "distribution_results_table.tex"
     failure_table_path = root_dir / "failure_analysis_table.tex"
     baseline_table_path = root_dir / "baseline_results_table.tex"
     ablation_table_path = root_dir / "invariant_ablation_table.tex"
+    ablation_detail_table_path = root_dir / "ablation_detail_table.tex"
     main_table_path.write_text("\n".join(main_table_lines) + "\n", encoding="utf-8")
     distribution_table_path.write_text("\n".join(distribution_table_lines) + "\n", encoding="utf-8")
     failure_table_path.write_text("\n".join(failure_table_lines) + "\n", encoding="utf-8")
     baseline_table_path.write_text("\n".join(baseline_table_lines) + "\n", encoding="utf-8")
     ablation_table_path.write_text("\n".join(ablation_table_lines) + "\n", encoding="utf-8")
-    return main_table_path, distribution_table_path, failure_table_path, baseline_table_path, ablation_table_path
+    ablation_detail_table_path.write_text("\n".join(ablation_detail_table_lines) + "\n", encoding="utf-8")
+    return (
+        main_table_path,
+        distribution_table_path,
+        failure_table_path,
+        baseline_table_path,
+        ablation_table_path,
+        ablation_detail_table_path,
+    )
 
 
 def select_representative_trial(
@@ -923,7 +993,7 @@ def generate_paper_assets(
     *,
     output_dir: str | Path = "results/paper_eval",
     representative_scenario: str = "corridor_trap",
-) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
+) -> tuple[Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path, Path]:
     root_dir = _resolve_output_root(output_dir)
     figures_dir = REPO_ROOT / "figures"
     figures_dir.mkdir(parents=True, exist_ok=True)
@@ -951,6 +1021,7 @@ def generate_paper_assets(
         failure_table_path,
         baseline_table_path,
         ablation_table_path,
+        ablation_detail_table_path,
     ) = generate_table_fragments(output_dir=root_dir)
     return (
         trajectory_path,
@@ -965,6 +1036,7 @@ def generate_paper_assets(
         failure_table_path,
         baseline_table_path,
         ablation_table_path,
+        ablation_detail_table_path,
     )
 
 
